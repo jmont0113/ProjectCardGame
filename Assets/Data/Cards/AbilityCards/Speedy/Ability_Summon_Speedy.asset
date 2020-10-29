@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0836b3260bd24244482f8f606c9cbb7a, type: 3}
+  m_Name: Ability_Summon_Speedy
+  m_EditorClassIdentifier: 
+  _name: Speedy
+  _graphic: {fileID: 21300000, guid: 65147089ef4d27e4bbad4945638374fe, type: 3}
+  _rarity: 8
+  _attribute: 2
+  _type: 3
+  _cost: 8
+  _drawEffect: {fileID: 0}
+  _playEffect: {fileID: 11400000, guid: 838e6c8b6cd75bf4dbd6c9e9ca409a9b, type: 2}
+  _discardEffect: {fileID: 0}
+  _description: 
+  _playSFX: {fileID: 0}
