@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Cards : ScriptableObject
+public class Cards
 {
     public int id;
     public string cardName;
@@ -14,12 +14,14 @@ public class Cards : ScriptableObject
 
     public Sprite currentImage;
 
+    public string color;
+
     public Cards()
     {
 
     }
 
-    public Cards(int ID, string CardName, int Cost, int Power, string CardDescription, Sprite CurrentImage)
+    public Cards(int ID, string CardName, int Cost, int Power, string CardDescription, Sprite CurrentImage, string Color)
     {
         id = ID;
         cardName = CardName;
@@ -29,5 +31,6 @@ public class Cards : ScriptableObject
 
         currentImage = CurrentImage;
 
+        color = Color;
     }
 }
