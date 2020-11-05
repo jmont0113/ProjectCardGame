@@ -1148,7 +1148,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: -750
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -7342,6 +7342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Padding.m_Right
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342923115884244095, guid: 4aeb11bb56fc558449797b009f7db756,
+        type: 3}
+      propertyPath: m_Spacing
+      value: -750
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aeb11bb56fc558449797b009f7db756, type: 3}
