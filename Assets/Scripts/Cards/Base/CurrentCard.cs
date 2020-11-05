@@ -31,10 +31,16 @@ public class CurrentCard : MonoBehaviour
     public GameObject Hand;
     public int numberOfCardsInDeck;
 
+    public bool canBeSummon;
+    public bool summoned;
+    public GameObject battleZone;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
         numberOfCardsInDeck = PlayerDeck.deckSize;
+        canBeSummon = false;
+        summoned = false; 
     }
 
     void Update()
@@ -87,5 +93,35 @@ public class CurrentCard : MonoBehaviour
             cardBack = false;
             this.tag = "Untagged";
         }
+
+        if (TurnSystem.currentMana >= cost && summoned == false)
+        {
+            canBeSummon = true;
+        }
+        else
+        {
+            canBeSummon = false;
+        }
+
+        if (canBeSummon == true)
+        {
+            gameObject.GetComponent<Draggable>().enabled = true;
+        }
+        else
+        {
+            gameObject.GetComponent<Draggable>().enabled = false;
+            battleZone = GameObject.Find("Zone");
+        }
+
+        if (summoned == false && this.transform.parent == battleZone.transform)
+        {
+            Summon();
+        }
+    }
+
+    public void Summon()
+    {
+        TurnSystem.currentMana -= cost;
+        summoned = true;
     }
 }

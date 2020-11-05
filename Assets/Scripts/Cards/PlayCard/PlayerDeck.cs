@@ -34,7 +34,6 @@ public class PlayerDeck : MonoBehaviour
             x = Random.Range(1, 13);
             deck[i] = CardDataBase.cardList[x];
         }
-
         StartCoroutine(StartGame());
     }
 

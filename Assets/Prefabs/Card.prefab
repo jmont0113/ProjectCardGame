@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 6762433187335796612}
   - component: {fileID: 6762433187335796613}
   - component: {fileID: 5636971170775260147}
+  - component: {fileID: 2078475976627029145}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -228,6 +229,11 @@ MonoBehaviour:
   currentImage: {fileID: 6762433187406203736}
   frame: {fileID: 6762433187634576723}
   cardBack: 1
+  Hand: {fileID: 0}
+  numberOfCardsInDeck: 0
+  canBeSummon: 0
+  summoned: 0
+  battleZone: {fileID: 0}
 --- !u!114 &6762433187335796615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,8 +251,8 @@ MonoBehaviour:
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
-  m_FlexibleWidth: 1
-  m_FlexibleHeight: 1
+  m_FlexibleWidth: 0
+  m_FlexibleHeight: 0
   m_LayoutPriority: 1
 --- !u!225 &6762433187335796612
 CanvasGroup:
@@ -288,6 +294,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Deck: {fileID: 0}
   It: {fileID: 6762433187335794811}
+--- !u!114 &2078475976627029145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6762433187335794811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b816dc69629fc8d4f8575810cc84c5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentToReturnTo: {fileID: 0}
+  placeholderParent: {fileID: 0}
 --- !u!1 &6762433187406203742
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ImageCardBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545883848633860720, guid: 8a15b69b27edbd942a86984e95db76d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8545883848633860723, guid: 8a15b69b27edbd942a86984e95db76d8,
         type: 3}
