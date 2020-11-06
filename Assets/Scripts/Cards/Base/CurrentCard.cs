@@ -35,12 +35,44 @@ public class CurrentCard : MonoBehaviour
     public bool summoned;
     public GameObject battleZone;
 
+    public static int drawX;
+    public int drawXcards;
+    public int addXmaxMana;
+
+    public GameObject attackBorder;
+
+    public GameObject Target;
+    public GameObject Enemy;
+
+    public bool summoningSickness;
+    public bool cantAttack;
+
+    public bool canAttack;
+
+    public static bool staticTargeting;
+    public static bool staticTargetingEnemy;
+
+    public bool targeting;
+    public bool targetingEnemy;
+
+    public bool onlyCurrentCardAttack;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
         numberOfCardsInDeck = PlayerDeck.deckSize;
         canBeSummon = false;
-        summoned = false; 
+        summoned = false;
+
+        drawX = 0;
+
+        canAttack = false;
+        summoningSickness = true;
+
+        Enemy = GameObject.Find("Enemy HP");
+
+        targeting = false;
+        targetingEnemy = false;
     }
 
     void Update()
@@ -56,8 +88,10 @@ public class CurrentCard : MonoBehaviour
         cost = currentCard[0].cost;
         power = currentCard[0].power;
         cardDescription = currentCard[0].cardDescription;
-
         currentSprite = currentCard[0].currentImage;
+
+        drawXcards = currentCard[0].drawXcards;
+        addXmaxMana = currentCard[0].addXmaxMana;
 
         nameText.text = "" + cardName;
         costText.text = "" + cost;
@@ -119,6 +153,47 @@ public class CurrentCard : MonoBehaviour
             {
                 Summon();
             }
+
+            if (canAttack == true)
+            {
+                attackBorder.SetActive(true);
+            }
+            else
+            {
+                attackBorder.SetActive(false);
+            }
+
+            if(TurnSystem.isPlayerTurn == false && summoned == true)
+            {
+                summoningSickness = false;
+                cantAttack = false;
+            }
+
+            if(TurnSystem.isPlayerTurn == true && summoningSickness == false && cantAttack == false)
+            {
+                canAttack = true;
+            }
+            else
+            {
+                canAttack = false;
+            }
+
+            targeting = staticTargeting;
+            targetingEnemy = staticTargetingEnemy;
+
+            if(targetingEnemy == true)
+            {
+                Target = Enemy;
+            }
+            else
+            {
+                Target = null;
+            }
+
+            if(targeting == true && targetingEnemy == true && onlyCurrentCardAttack == true)
+            {
+                Attack();
+            }
         }
     }
 
@@ -126,5 +201,61 @@ public class CurrentCard : MonoBehaviour
     {
         TurnSystem.currentMana -= cost;
         summoned = true;
+
+        MaxMana(addXmaxMana);
+        drawX = drawXcards;
+    }
+
+    public void MaxMana(int x)
+    {
+        TurnSystem.maxMana += x;
+    }
+
+    public void Attack()
+    {
+        if(canAttack == true)
+        {
+            if(Target != null)
+            {
+                if(Target == Enemy)
+                {
+                    //EnemyHP.staticHp -= power;
+                    EnemyHP.staticHp -= 1000;
+                    targeting = false;
+                    canAttack = true;
+                }
+
+                if(Target.name == "CardToHand(Clone)")
+                {
+                    canAttack = true;
+                }
+            }
+        }
+    }
+
+    public void UntargetEnemy()
+    {
+        staticTargetingEnemy = false;
+    }
+    public void TargetEnemy()
+    {
+        staticTargetingEnemy = true;
+    }
+    public void StartAttack()
+    {
+        staticTargeting = true;
+
+    }
+    public void StopAttack()
+    {
+        staticTargeting = false;
+    }
+    public void OneCardAttack()
+    {
+        onlyCurrentCardAttack = true;
+    }
+    public void OneCardAttackStop()
+    {
+        onlyCurrentCardAttack = false;
     }
 }

@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
-    public bool isPlayerTurn;
+    public static bool isPlayerTurn;
     public int playerTurn;
     public int enemyTurn;
     public Text turnText;
 
-    public int maxMana;
+    public static int maxMana;
     public static int currentMana;
     public Text manaText;
+
+    public static bool startTurn;
 
     void Start()
     {
@@ -22,6 +24,8 @@ public class TurnSystem : MonoBehaviour
 
         maxMana = 1;
         currentMana = 1;
+
+        startTurn = false;
     }
 
     void Update()
@@ -50,5 +54,7 @@ public class TurnSystem : MonoBehaviour
         playerTurn += 1;
         maxMana += 1;
         currentMana = maxMana;
+
+        startTurn = true;
     }
 }

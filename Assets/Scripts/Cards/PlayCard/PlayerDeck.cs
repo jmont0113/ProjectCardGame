@@ -58,6 +58,18 @@ public class PlayerDeck : MonoBehaviour
         {
             cardInDeck4.SetActive(false);
         }
+
+        if(CurrentCard.drawX > 0)
+        {
+            StartCoroutine(Draw(CurrentCard.drawX));
+            CurrentCard.drawX = 0;
+        }
+
+        if(TurnSystem.startTurn == true)
+        {
+            StartCoroutine(Draw(1));
+            TurnSystem.startTurn = false;
+        }
     }
 
     IEnumerator Example()
@@ -93,5 +105,14 @@ public class PlayerDeck : MonoBehaviour
         }
         Instantiate(CardBack, transform.position, transform.rotation);
         StartCoroutine(Example());
+    }
+
+    IEnumerator Draw(int x)
+    {
+        for(int i = 0; i < x; i++)
+        {
+            yield return new WaitForSeconds(1);
+            Instantiate(CardToHand, transform.position, transform.rotation);
+        }
     }
 }
