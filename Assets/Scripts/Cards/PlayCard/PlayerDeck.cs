@@ -21,7 +21,8 @@ public class PlayerDeck : MonoBehaviour
     public GameObject CardBack;
     public GameObject Deck;
 
-    public GameObject[] Clones;
+    //public GameObject[] Clones;
+    public GameObject[] ClonesDeck;
 
     public GameObject Hand;
 
@@ -62,11 +63,13 @@ public class PlayerDeck : MonoBehaviour
     IEnumerator Example()
     {
         yield return new WaitForSeconds(1);
-        Clones = GameObject.FindGameObjectsWithTag("Clone");
-
-        foreach(GameObject Clone in Clones)
+        //Clones = GameObject.FindGameObjectsWithTag("Clone");
+        ClonesDeck = GameObject.FindGameObjectsWithTag("CloneDeck");
+        //foreach (GameObject Clone in Clones)
+        foreach (GameObject CloneDeck in ClonesDeck)
         {
-            Destroy(Clone);
+            //Destroy(Clone);
+            Destroy(CloneDeck);
         }
     }
 

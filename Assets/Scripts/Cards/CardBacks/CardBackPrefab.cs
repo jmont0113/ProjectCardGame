@@ -9,7 +9,7 @@ public class CardBackPrefab : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class BoardSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Token _tokenPrefab = null;
+
+    public Token SpawnToken(Vector3 position)
     {
-        
+        // assign it into new variable, so we can return 
+        Token newToken = Instantiate(_tokenPrefab,
+            position, _tokenPrefab.transform.rotation);
+
+        return newToken;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveToken(Token tokenToRemove)
     {
-        
+        Destroy(tokenToRemove.gameObject);
     }
 }

@@ -85,7 +85,7 @@ public class CurrentCard : MonoBehaviour
 
         staticCardBack = cardBack;
 
-        if(this.tag == "Clone")
+        if (this.tag == "Clone")
         {
             currentCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
             numberOfCardsInDeck -= 1;
@@ -94,28 +94,31 @@ public class CurrentCard : MonoBehaviour
             this.tag = "Untagged";
         }
 
-        if (TurnSystem.currentMana >= cost && summoned == false)
+        if(this.tag != "Deck")
         {
-            canBeSummon = true;
-        }
-        else
-        {
-            canBeSummon = false;
-        }
+            if (TurnSystem.currentMana >= cost && summoned == false)
+            {
+                canBeSummon = true;
+            }
+            else
+            {
+                canBeSummon = false;
+            }
 
-        if (canBeSummon == true)
-        {
-            gameObject.GetComponent<Draggable>().enabled = true;
-        }
-        else
-        {
-            gameObject.GetComponent<Draggable>().enabled = false;
-            battleZone = GameObject.Find("Zone");
-        }
+            if (canBeSummon == true)
+            {
+                gameObject.GetComponent<Draggable>().enabled = true;
+            }
+            else
+            {
+                gameObject.GetComponent<Draggable>().enabled = false;
+                battleZone = GameObject.Find("Zone");
+            }
 
-        if (summoned == false && this.transform.parent == battleZone.transform)
-        {
-            Summon();
+            if (summoned == false && this.transform.parent == battleZone.transform)
+            {
+                Summon();
+            }
         }
     }
 

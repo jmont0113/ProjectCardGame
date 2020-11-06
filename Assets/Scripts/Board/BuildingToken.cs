@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingToken : MonoBehaviour
+public class BuildingToken : MonoBehaviour, IBuffable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float _buffScaleIncrease = 0.5f;
+    public void Buff()
     {
-        
+        transform.localScale = new Vector3(
+            transform.localScale.x + _buffScaleIncrease,
+            transform.localScale.y + _buffScaleIncrease,
+            transform.localScale.z + _buffScaleIncrease);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Unbuff()
     {
-        
+        transform.localScale = new Vector3(
+            transform.localScale.x - _buffScaleIncrease,
+            transform.localScale.y - _buffScaleIncrease,
+            transform.localScale.z - _buffScaleIncrease);
     }
 }

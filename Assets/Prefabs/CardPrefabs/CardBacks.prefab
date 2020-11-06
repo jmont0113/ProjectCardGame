@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2181609894023838949}
   m_Layer: 5
   m_Name: CardBacks
-  m_TagString: Clone
+  m_TagString: CloneDeck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983144735405217645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4ca53c745caee94f889e2bc27814363, type: 3}
   m_Name: 
@@ -155,6 +155,9 @@ MonoBehaviour:
   cardBack: 1
   Hand: {fileID: 0}
   numberOfCardsInDeck: 0
+  canBeSummon: 0
+  summoned: 0
+  battleZone: {fileID: 0}
 --- !u!114 &983144735405215889
 MonoBehaviour:
   m_ObjectHideFlags: 0

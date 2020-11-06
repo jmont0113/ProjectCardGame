@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffCommand : MonoBehaviour
+public class BuffCommand : ICommand
 {
-    // Start is called before the first frame update
-    void Start()
+    IBuffable _buffableToken;
+
+    public BuffCommand(IBuffable buffableToken)
     {
-        
+        _buffableToken = buffableToken;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Execute()
     {
-        
+        // _token.Buff();
+        _buffableToken.Buff();
+    }
+
+    public void UndoExecute()
+    {
+        // _token.Debuff();
+        _buffableToken.Unbuff();
     }
 }
