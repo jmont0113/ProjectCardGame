@@ -57,6 +57,12 @@ public class CurrentCard : MonoBehaviour
 
     public bool onlyCurrentCardAttack;
 
+    public GameObject summonBorder;
+
+    public bool canBeDestroyed;
+    public GameObject Graveyard;
+    public bool beInGraveyard;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
@@ -130,7 +136,7 @@ public class CurrentCard : MonoBehaviour
 
         if(this.tag != "Deck")
         {
-            if (TurnSystem.currentMana >= cost && summoned == false)
+            if (TurnSystem.currentMana >= cost && summoned == false && beInGraveyard == false)
             {
                 canBeSummon = true;
             }
@@ -149,6 +155,7 @@ public class CurrentCard : MonoBehaviour
                 battleZone = GameObject.Find("Zone");
             }
 
+            //if (summoned == false && this.transform.parent == battleZone.transform)
             if (summoned == false && this.transform.parent == battleZone.transform)
             {
                 Summon();
@@ -194,6 +201,15 @@ public class CurrentCard : MonoBehaviour
             {
                 Attack();
             }
+
+            if(canBeSummon == true)
+            {
+                summonBorder.SetActive(true);
+            }
+            else
+            {
+                summonBorder.SetActive(false);
+            }
         }
     }
 
@@ -213,7 +229,7 @@ public class CurrentCard : MonoBehaviour
 
     public void Attack()
     {
-        if(canAttack == true)
+        if(canAttack == true && summoned == true)
         {
             if(Target != null)
             {
@@ -257,5 +273,17 @@ public class CurrentCard : MonoBehaviour
     public void OneCardAttackStop()
     {
         onlyCurrentCardAttack = false;
+    }
+    public void Destroy()
+    {
+        Graveyard = GameObject.Find("My Graveyard");
+        canBeDestroyed = true; // to test this void 
+        if(canBeDestroyed == true)
+        {
+            this.transform.SetParent(Graveyard.transform);
+            canBeDestroyed = false;
+            summoned = false;
+            beInGraveyard = true;
+        }
     }
 }
