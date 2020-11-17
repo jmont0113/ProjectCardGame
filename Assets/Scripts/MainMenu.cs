@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("CardGame");
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void ReturnToMainMenuScene()
     {
         SceneManager.LoadScene("MainMenu");
