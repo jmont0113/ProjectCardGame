@@ -533,6 +533,7 @@ MonoBehaviour:
     addXmaxMana: 0
     currentImage: {fileID: 0}
     color: 
+    returnXcards: 0
   currentID: 12
   id: 0
   cardName: 
@@ -565,8 +566,13 @@ MonoBehaviour:
   onlyCurrentCardAttack: 0
   summonBorder: {fileID: 5044962658643849954}
   canBeDestroyed: 0
-  Graveyard: {fileID: 0}
+  Graveyard: {fileID: 804529231130683123, guid: f511b4a6b54e0b44dac59f7b662b3e8c,
+    type: 3}
   beInGraveyard: 0
+  hurted: 0
+  actualpower: 0
+  returnXcards: 0
+  useReturn: 0
 --- !u!225 &2596716977570065522
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -686,21 +692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 12
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2596716977570065520}
-          m_MethodName: StartAttack
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 14
     callback:
       m_PersistentCalls:
@@ -744,6 +735,21 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 2596716977570065520}
           m_MethodName: OneCardAttack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 12
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2596716977570065520}
+          m_MethodName: ReturnThis
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

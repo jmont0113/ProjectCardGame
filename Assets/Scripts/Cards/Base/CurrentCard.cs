@@ -67,7 +67,7 @@ public class CurrentCard : MonoBehaviour
     public int returnXcards;
     public bool useReturn;
 
-   // public static bool 
+    public static bool UcanReturn;
 
     void Start()
     {
@@ -105,9 +105,14 @@ public class CurrentCard : MonoBehaviour
         drawXcards = currentCard[0].drawXcards;
         addXmaxMana = currentCard[0].addXmaxMana;
 
+        returnXcards = currentCard[0].returnXcards;
+
         nameText.text = "" + cardName;
         costText.text = "" + cost;
-        powerText.text = "" + power;
+
+        actualpower = power - hurted;
+
+        powerText.text = "" + actualpower;
         descriptionText.text = " " + cardDescription;
 
         currentImage.sprite = currentSprite;
@@ -207,13 +212,29 @@ public class CurrentCard : MonoBehaviour
                 Attack();
             }
 
-            if(canBeSummon == true)
+            if(canBeSummon == true || UcanReturn == true && beInGraveyard == true)
             {
                 summonBorder.SetActive(true);
             }
             else
             {
                 summonBorder.SetActive(false);
+            }
+
+            if(actualpower <= 0)
+            {
+                Destroy();
+            }
+
+            if(returnXcards > 0 && summoned == true && useReturn == false)
+            {
+                Return(returnXcards);
+                useReturn = true;
+            }
+
+            if(TurnSystem.isPlayerTurn == false)
+            {
+                UcanReturn = false;
             }
         }
     }
@@ -281,13 +302,38 @@ public class CurrentCard : MonoBehaviour
     public void Destroy()
     {
         Graveyard = GameObject.Find("My Graveyard");
-        canBeDestroyed = true; // to test this void 
+        canBeDestroyed = true; 
         if(canBeDestroyed == true)
         {
             this.transform.SetParent(Graveyard.transform);
             canBeDestroyed = false;
             summoned = false;
             beInGraveyard = true;
+            hurted = 0;
+        }
+    }
+
+    public void Return(int x)
+    {
+        for(int i = 0; i <= x; i++)
+        {
+            ReturnCard();
+        }
+    }
+
+    public void ReturnCard()
+    {
+        UcanReturn = true;
+    }
+
+    public void ReturnThis()
+    {
+        if(beInGraveyard == true && UcanReturn == true)
+        {
+            this.transform.SetParent(Hand.transform);
+            UcanReturn = false;
+            beInGraveyard = false;
+            summoningSickness = true;
         }
     }
 }
