@@ -62,6 +62,13 @@ public class CurrentCard : MonoBehaviour
     public GameObject Graveyard;
     public bool beInGraveyard;
 
+    public int hurted;
+    public int actualpower;
+    public int returnXcards;
+    public bool useReturn;
+
+   // public static bool 
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
@@ -159,7 +166,7 @@ public class CurrentCard : MonoBehaviour
                 Summon();
             }
 
-            if (canAttack == true)
+            if (canAttack == true && beInGraveyard == false)
             {
                 attackBorder.SetActive(true);
             }
