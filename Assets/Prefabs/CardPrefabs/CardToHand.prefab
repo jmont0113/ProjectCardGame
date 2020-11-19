@@ -554,17 +554,19 @@ MonoBehaviour:
   battleZone: {fileID: 0}
   drawXcards: 0
   addXmaxMana: 0
-  attackBorder: {fileID: 1417218478208600604, guid: 2d257b300f63bb7479962ab29c0933b7,
-    type: 3}
+  attackBorder: {fileID: 247208949060954734}
   Target: {fileID: 0}
   Enemy: {fileID: 0}
   summoningSickness: 0
-  cantAttack: 0
   canAttack: 0
+  cantAttack: 0
   targeting: 0
   targetingEnemy: 0
   onlyCurrentCardAttack: 0
   summonBorder: {fileID: 5044962658643849954}
+  canBeDestroyed: 0
+  Graveyard: {fileID: 0}
+  beInGraveyard: 0
 --- !u!225 &2596716977570065522
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1140,7 +1142,7 @@ PrefabInstance:
     - target: {fileID: 1417218478208600604, guid: 2d257b300f63bb7479962ab29c0933b7,
         type: 3}
       propertyPath: m_Name
-      value: Attack
+      value: AttackBorder
       objectReference: {fileID: 0}
     - target: {fileID: 1417218478208600604, guid: 2d257b300f63bb7479962ab29c0933b7,
         type: 3}
@@ -1257,6 +1259,12 @@ PrefabInstance:
 --- !u!224 &5778830538254851785 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4680995147086905019, guid: 2d257b300f63bb7479962ab29c0933b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1208296796064653426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &247208949060954734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1417218478208600604, guid: 2d257b300f63bb7479962ab29c0933b7,
     type: 3}
   m_PrefabInstance: {fileID: 1208296796064653426}
   m_PrefabAsset: {fileID: 0}

@@ -32,7 +32,7 @@ public class TurnSystem : MonoBehaviour
     {
         if(isPlayerTurn == true)
         {
-            turnText.text = "Your Turn";
+            turnText.text = "Player Turn";
         }
         else
         {

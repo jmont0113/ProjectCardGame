@@ -45,9 +45,8 @@ public class CurrentCard : MonoBehaviour
     public GameObject Enemy;
 
     public bool summoningSickness;
-    public bool cantAttack;
-
     public bool canAttack;
+    public bool cantAttack;
 
     public static bool staticTargeting;
     public static bool staticTargetingEnemy;
@@ -155,7 +154,6 @@ public class CurrentCard : MonoBehaviour
                 battleZone = GameObject.Find("Zone");
             }
 
-            //if (summoned == false && this.transform.parent == battleZone.transform)
             if (summoned == false && this.transform.parent == battleZone.transform)
             {
                 Summon();
@@ -235,8 +233,7 @@ public class CurrentCard : MonoBehaviour
             {
                 if(Target == Enemy)
                 {
-                    //EnemyHP.staticHp -= power;
-                    EnemyHP.staticHp -= 1000;
+                    EnemyHP.staticHp -= power;
                     targeting = false;
                     canAttack = true;
                 }

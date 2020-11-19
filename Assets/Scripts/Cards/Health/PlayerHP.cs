@@ -13,8 +13,8 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-        maxHp = 25000.0f;
-        staticHp = 20000.0f;
+        maxHp = 250000.0f;
+        staticHp = 250000.0f;
     }
 
     void Update()
