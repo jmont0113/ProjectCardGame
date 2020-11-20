@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeck : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PlayerDeck : MonoBehaviour
 
     public GameObject Hand;
 
+    public Text LoseText;
+    public GameObject LoseTextGameObject;
+
     void Start()
     {
         x = 0;
@@ -40,6 +44,12 @@ public class PlayerDeck : MonoBehaviour
 
     void Update()
     {
+        if(deckSize <= 0)
+        {
+            LoseTextGameObject.SetActive(true);
+            LoseText.text = "You Lose";
+        }
+
         staticDeck = deck;
 
         if(deckSize < 30)

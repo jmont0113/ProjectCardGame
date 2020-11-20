@@ -23,10 +23,14 @@ public class TurnSystem : MonoBehaviour
     public int seconds;
     public bool timerStart;
 
+    public static int maxEnemyMana;
+    public static int currentEnemyMana;
+    public Text enemyManaText;
+
     void Start()
     {
         StartGame();
-        seconds = 60;
+        seconds = 10;
         timerStart = true;
     }
 
@@ -49,20 +53,39 @@ public class TurnSystem : MonoBehaviour
             timerStart = false;
         }
 
-        if(seconds == 0)
+        if(seconds == 0 && isPlayerTurn == true)
         {
             EndPlayerTurn();
             timerStart = true;
-            seconds = 60; 
+            seconds = 10;
         }
 
         timerText.text = seconds + "";
+
+        if(isPlayerTurn == false && seconds > 0 && timerStart == true)
+        {
+            StartCoroutine(EnemyTimer());
+            timerStart = false;
+        }
+
+        if(seconds == 0 && isPlayerTurn == false)
+        {
+            EndEnemyTurn();
+            timerStart = true;
+            seconds = 10;
+        }
+
+        enemyManaText.text = currentEnemyMana + "/" + maxEnemyMana;
     }
 
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
         enemyTurn += 1;
+
+        maxEnemyMana += 1;
+        currentEnemyMana += 1;
+        currentEnemyMana = maxEnemyMana;
     }
 
     public void EndEnemyTurn()
@@ -87,6 +110,9 @@ public class TurnSystem : MonoBehaviour
             maxMana = 1;
             currentMana = 1;
 
+            maxEnemyMana = 0;
+            currentEnemyMana = 0;
+
             startTurn = false;
         }
 
@@ -99,7 +125,10 @@ public class TurnSystem : MonoBehaviour
             maxMana = 0;
             currentMana = 0;
 
-            startTurn = true;
+            maxEnemyMana = 1;
+            currentEnemyMana = 1;
+
+           // startTurn = true;
         }
     }
 
@@ -110,6 +139,16 @@ public class TurnSystem : MonoBehaviour
             yield return new WaitForSeconds(1);
             seconds--;
             StartCoroutine(Timer());
+        }
+    }
+
+    IEnumerator EnemyTimer()
+    {
+        if (isPlayerTurn == false && seconds > 0)
+        {
+            yield return new WaitForSeconds(1);
+            seconds--;
+            StartCoroutine(EnemyTimer());
         }
     }
 }
