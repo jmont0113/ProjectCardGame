@@ -16,11 +16,18 @@ public class TurnSystem : MonoBehaviour
 
     public static bool startTurn;
 
-    public int random; 
+    public int random;
+
+    public bool turnEnd;
+    public Text timerText;
+    public int seconds;
+    public bool timerStart;
 
     void Start()
     {
         StartGame();
+        seconds = 60;
+        timerStart = true;
     }
 
     void Update()
@@ -35,6 +42,21 @@ public class TurnSystem : MonoBehaviour
             
         }
         manaText.text = currentMana + "/" + maxMana;
+
+        if(isPlayerTurn == true && seconds > 0 && timerStart == true)
+        {
+            StartCoroutine(Timer());
+            timerStart = false;
+        }
+
+        if(seconds == 0)
+        {
+            EndPlayerTurn();
+            timerStart = true;
+            seconds = 60; 
+        }
+
+        timerText.text = seconds + "";
     }
 
     public void EndPlayerTurn()
@@ -78,6 +100,16 @@ public class TurnSystem : MonoBehaviour
             currentMana = 0;
 
             startTurn = true;
+        }
+    }
+
+    IEnumerator Timer()
+    {
+        if(isPlayerTurn == true && seconds > 0)
+        {
+            yield return new WaitForSeconds(1);
+            seconds--;
+            StartCoroutine(Timer());
         }
     }
 }
