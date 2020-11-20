@@ -27,5 +27,9 @@ public class EnemyHP : MonoBehaviour
             hp = maxHp;
         }
         hpText.text = hp + " HP";
+        if (hp <= 0)
+        {
+            hp = 0;
+        }
     }
 }

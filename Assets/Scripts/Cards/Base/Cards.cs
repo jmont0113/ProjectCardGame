@@ -20,12 +20,14 @@ public class Cards
 
     public int returnXcards;
 
+    public int healXpower;
+
     public Cards()
     {
 
     }
 
-    public Cards(int ID, string CardName, int Cost, int Power, string CardDescription, Sprite CurrentImage, string Color, int DrawXcards, int AddXmaxMana, int ReturnXcards)
+    public Cards(int ID, string CardName, int Cost, int Power, string CardDescription, Sprite CurrentImage, string Color, int DrawXcards, int AddXmaxMana, int ReturnXcards, int HealXpower)
     {
         id = ID;
         cardName = CardName;
@@ -41,5 +43,7 @@ public class Cards
         addXmaxMana = AddXmaxMana;
 
         returnXcards = ReturnXcards;
+
+        healXpower = HealXpower;
     }
 }

@@ -16,16 +16,11 @@ public class TurnSystem : MonoBehaviour
 
     public static bool startTurn;
 
+    public int random; 
+
     void Start()
     {
-        isPlayerTurn = true;
-        playerTurn = 1;
-        enemyTurn = 0;
-
-        maxMana = 1;
-        currentMana = 1;
-
-        startTurn = false;
+        StartGame();
     }
 
     void Update()
@@ -56,5 +51,33 @@ public class TurnSystem : MonoBehaviour
         currentMana = maxMana;
 
         startTurn = true;
+    }
+
+    public void StartGame()
+    {
+        random = Random.Range(0, 2);
+        if(random == 0)
+        {
+            isPlayerTurn = true;
+            playerTurn = 1;
+            enemyTurn = 0;
+
+            maxMana = 1;
+            currentMana = 1;
+
+            startTurn = false;
+        }
+
+        if(random == 1)
+        {
+            isPlayerTurn = false;
+            playerTurn = 0;
+            enemyTurn = 1;
+
+            maxMana = 0;
+            currentMana = 0;
+
+            startTurn = true;
+        }
     }
 }

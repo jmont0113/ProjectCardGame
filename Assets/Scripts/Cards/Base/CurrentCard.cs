@@ -69,6 +69,9 @@ public class CurrentCard : MonoBehaviour
 
     public static bool UcanReturn;
 
+    public int healXpower;
+    public bool canHeal;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
@@ -85,6 +88,8 @@ public class CurrentCard : MonoBehaviour
 
         targeting = false;
         targetingEnemy = false;
+
+        canHeal = true;
     }
 
     void Update()
@@ -106,6 +111,8 @@ public class CurrentCard : MonoBehaviour
         addXmaxMana = currentCard[0].addXmaxMana;
 
         returnXcards = currentCard[0].returnXcards;
+
+        healXpower = currentCard[0].healXpower;
 
         nameText.text = "" + cardName;
         costText.text = "" + cost;
@@ -147,7 +154,7 @@ public class CurrentCard : MonoBehaviour
 
         if(this.tag != "Deck")
         {
-            if (TurnSystem.currentMana >= cost && summoned == false && beInGraveyard == false)
+            if (TurnSystem.currentMana >= cost && summoned == false && beInGraveyard == false && TurnSystem.isPlayerTurn == true)
             {
                 canBeSummon = true;
             }
@@ -226,7 +233,7 @@ public class CurrentCard : MonoBehaviour
                 Destroy();
             }
 
-            if(returnXcards > 0 && summoned == true && useReturn == false)
+            if(returnXcards > 0 && summoned == true && useReturn == false && TurnSystem.isPlayerTurn == true)
             {
                 Return(returnXcards);
                 useReturn = true;
@@ -235,6 +242,12 @@ public class CurrentCard : MonoBehaviour
             if(TurnSystem.isPlayerTurn == false)
             {
                 UcanReturn = false;
+            }
+
+            if(canHeal == true && summoned == true)
+            {
+                Heal();
+                canHeal = false;
             }
         }
     }
@@ -264,6 +277,10 @@ public class CurrentCard : MonoBehaviour
                     EnemyHP.staticHp -= power;
                     targeting = false;
                     canAttack = true;
+                    if (EnemyHP.staticHp < 0)
+                    {
+                        EnemyHP.staticHp = 0;
+                    }
                 }
 
                 if(Target.name == "CardToHand(Clone)")
@@ -335,5 +352,10 @@ public class CurrentCard : MonoBehaviour
             beInGraveyard = false;
             summoningSickness = true;
         }
+    }
+
+    public void Heal()
+    {
+        PlayerHP.staticHp += healXpower;
     }
 }
