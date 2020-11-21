@@ -8,6 +8,9 @@ TagManager:
   - First
   - Deck
   - CloneDeck
+  - EnemyClone
+  - EnemyAIClones
+  - EnemyDeck
   layers:
   - Default
   - TransparentFX

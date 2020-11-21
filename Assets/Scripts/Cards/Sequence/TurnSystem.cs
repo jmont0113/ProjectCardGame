@@ -85,7 +85,10 @@ public class TurnSystem : MonoBehaviour
 
         maxEnemyMana += 1;
         currentEnemyMana += 1;
-        currentEnemyMana = maxEnemyMana;
+        //currentEnemyMana = maxEnemyMana;
+
+        AI.draw = false;
+
     }
 
     public void EndEnemyTurn()
