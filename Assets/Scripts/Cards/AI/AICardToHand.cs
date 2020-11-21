@@ -62,7 +62,6 @@ public class AICardToHand : MonoBehaviour
             z = 1;
         }
 
-
         id = currentCard[0].id;
         cardName = currentCard[0].cardName;
         cost = currentCard[0].cost;
