@@ -40,6 +40,14 @@ public class AICardToHand : MonoBehaviour
 
     public int numberOfCardsInDeck;
 
+    public bool isTarget;
+    public GameObject Graveyard;
+
+    public bool currentCardCanBeDestroyed;
+
+    public GameObject cardBack;
+    public GameObject AiZone;
+
 
     void Start()
     {
@@ -48,6 +56,11 @@ public class AICardToHand : MonoBehaviour
 
         z = 0;
         numberOfCardsInDeck = AI.deckSize;
+
+        Graveyard = GameObject.Find("Enemy Graveyard");
+        StartCoroutine(AfterVoidStart());
+
+        AiZone = GameObject.Find("MyEnemyZone");
     }
 
     
@@ -108,5 +121,37 @@ public class AICardToHand : MonoBehaviour
             AI.deckSize -= 1;
             this.tag = "Untagged";
         }
+
+        if(hurted >= power && currentCardCanBeDestroyed == true)
+        {
+            this.transform.SetParent(Graveyard.transform);
+            hurted = 0;
+        }
+
+        if(this.transform.parent == Hand.transform)
+        {
+            cardBack.SetActive(true);
+        }
+
+        if(this.transform.parent == AiZone.transform)
+        {
+            cardBack.SetActive(false);
+        }
+    }
+
+    public void BeingTarget()
+    {
+        isTarget = true;
+    }
+
+    public void DontBeingTarget()
+    {
+        isTarget = false;
+    }
+
+    IEnumerator AfterVoidStart()
+    {
+        yield return new WaitForSeconds(1);
+        currentCardCanBeDestroyed = true;
     }
 }
