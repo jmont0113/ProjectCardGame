@@ -30,6 +30,11 @@ public class PlayerDeck : MonoBehaviour
     public Text LoseText;
     public GameObject LoseTextGameObject;
 
+    void Awake()
+    {
+        Shuffle();
+    }
+
     void Start()
     {
         x = 0;

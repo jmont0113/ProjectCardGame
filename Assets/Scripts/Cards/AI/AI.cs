@@ -10,6 +10,8 @@ public class AI : MonoBehaviour
 
     public List<Cards> cardsInHand = new List<Cards>();
 
+    public List<Cards> cardsInZone = new List<Cards>();
+
     public GameObject Hand;
     public GameObject Zone;
     public GameObject Graveyard;
@@ -49,6 +51,13 @@ public class AI : MonoBehaviour
 
     public int howManyCards;
 
+    public bool[] canAttack;
+    public static bool AiEndPhase;
+
+    void Awake()
+    {
+        Shuffle();
+    }
     void Start()
     {
         StartCoroutine(WaitFiveSeconds());
@@ -210,6 +219,78 @@ public class AI : MonoBehaviour
             summonPhase = false;
             attackPhase = true;
         }
+
+        if(0 == 0)
+        {
+            int k = 0;
+            int howManyCards2 = 0;
+            foreach (Transform child in Zone.transform)
+            {
+                howManyCards2++;
+            }
+
+            foreach (Transform child in Zone.transform)
+            {
+                canAttack[k] = child.GetComponent<AICardToHand>().canAttack;
+                k++;
+            }
+
+            for (int i = 0; i < 40; i++)
+            {
+                if (i >= howManyCards2)
+                {
+                    canAttack[i] = false;
+                }
+            }
+            k = 0;
+        }
+
+        if (0 == 0)
+        {
+            int l = 0;
+            int howManyCards3 = 0;
+            foreach (Transform child in Zone.transform)
+            {
+                howManyCards3++;
+            }
+
+            foreach (Transform child in Zone.transform)
+            {
+                cardsInZone[l] = child.GetComponent<AICardToHand>().currentCard[0];
+                l++;
+            }
+
+            for (int i = 0; i < 40; i++)
+            {
+                if (i >= howManyCards3)
+                {
+                    cardsInHand[i] = CardDataBase.cardList[0];
+                }
+            }
+            l = 0;
+        }
+
+        if(attackPhase == true && endPhase == false)
+        {
+            for(int i = 0; i < 40; i++)
+            {
+                if(canAttack[i] == true)
+                {
+                    PlayerHP.staticHp -= cardsInZone[i].power;
+                    if (PlayerHP.staticHp < 0)
+                    {
+                        PlayerHP.staticHp = 0;
+                    }
+                }
+            }
+
+            endPhase = true;
+        }
+
+        if(endPhase == true)
+        {
+            AiEndPhase = true;
+        }
     }
 
     public void Shuffle()
@@ -228,11 +309,10 @@ public class AI : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i <= 4; i++)
         {
             yield return new WaitForSeconds(1);
             Instantiate(cardToHand, transform.position, transform.rotation);
-
         }
     }
 

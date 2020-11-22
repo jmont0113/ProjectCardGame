@@ -76,6 +76,12 @@ public class TurnSystem : MonoBehaviour
         }
 
         enemyManaText.text = currentEnemyMana + "/" + maxEnemyMana;
+
+        if(AI.AiEndPhase == true)
+        {
+            EndEnemyTurn();
+            AI.AiEndPhase = false;
+        }
     }
 
     public void EndPlayerTurn()
@@ -85,7 +91,7 @@ public class TurnSystem : MonoBehaviour
 
         maxEnemyMana += 1;
         currentEnemyMana += 1;
-        //currentEnemyMana = maxEnemyMana;
+        currentEnemyMana = maxEnemyMana;
 
         AI.draw = false;
 
@@ -131,7 +137,7 @@ public class TurnSystem : MonoBehaviour
             maxEnemyMana = 1;
             currentEnemyMana = 1;
 
-           // startTurn = true;
+            startTurn = true;
         }
     }
 

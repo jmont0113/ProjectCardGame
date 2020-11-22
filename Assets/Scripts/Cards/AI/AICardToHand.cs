@@ -49,6 +49,9 @@ public class AICardToHand : MonoBehaviour
     public GameObject AiZone;
 
 
+    public bool canAttack;
+    public bool summoningSickness;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentId];
@@ -61,6 +64,8 @@ public class AICardToHand : MonoBehaviour
         StartCoroutine(AfterVoidStart());
 
         AiZone = GameObject.Find("MyEnemyZone");
+
+        summoningSickness = true;
     }
 
     
@@ -136,6 +141,20 @@ public class AICardToHand : MonoBehaviour
         if(this.transform.parent == AiZone.transform)
         {
             cardBack.SetActive(false);
+        }
+
+        if(TurnSystem.isPlayerTurn == false && summoningSickness == false)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            canAttack = false;
+        }
+
+        if(TurnSystem.isPlayerTurn == true && this.transform.parent == AiZone.transform)
+        {
+            summoningSickness = false;
         }
     }
 

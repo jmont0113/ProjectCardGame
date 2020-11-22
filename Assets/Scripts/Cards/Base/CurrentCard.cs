@@ -75,6 +75,13 @@ public class CurrentCard : MonoBehaviour
     public GameObject EnemyZone;
     public AICardToHand aiCardToHand;
 
+    public bool spell;
+    public int damageDealtBySpell;
+
+    public bool dealDamage;
+
+    public bool stopDealDamage;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
@@ -118,6 +125,9 @@ public class CurrentCard : MonoBehaviour
         returnXcards = currentCard[0].returnXcards;
 
         healXpower = currentCard[0].healXpower;
+
+        spell = currentCard[0].spell;
+        damageDealtBySpell = currentCard[0].damageDealtBySpell;
 
         nameText.text = "" + cardName;
         costText.text = "" + cost;
@@ -233,7 +243,7 @@ public class CurrentCard : MonoBehaviour
                 summonBorder.SetActive(false);
             }
 
-            if(actualpower <= 0)
+            if(actualpower <= 0 && spell == false)
             {
                 Destroy();
             }
@@ -253,6 +263,36 @@ public class CurrentCard : MonoBehaviour
             {
                 Heal();
                 canHeal = false;
+            }
+
+            if(damageDealtBySpell > 0)
+            {
+                dealDamage = true;
+            }
+
+            if(dealDamage == true && this.transform.parent == battleZone.transform)
+            {
+                attackBorder.SetActive(true);
+            }
+            else
+            {
+                attackBorder.SetActive(false);
+            }
+
+            if(dealDamage == true && this.transform.parent == battleZone.transform)
+            {
+                dealxDamage(damageDealtBySpell);
+            }
+
+            if(stopDealDamage == true)
+            {
+                attackBorder.SetActive(false);
+                dealDamage = false;
+            }
+
+            if(this.transform.parent == battleZone.transform && spell == true && dealDamage == false)
+            {
+                Destroy();
             }
         }
     }
@@ -369,5 +409,28 @@ public class CurrentCard : MonoBehaviour
     public void Heal()
     {
         PlayerHP.staticHp += healXpower;
+    }
+
+    public void dealxDamage(int x)
+    {
+        if(Target != null)
+        {
+            if(Target == Enemy && stopDealDamage == false && Input.GetMouseButton(0))
+            {
+                EnemyHP.staticHp -= damageDealtBySpell;
+                stopDealDamage = true;
+            }
+        }
+        else
+        {
+            foreach (Transform child in EnemyZone.transform)
+            {
+                if (child.GetComponent<AICardToHand>().isTarget == true && Input.GetMouseButton(0))
+                {
+                    child.GetComponent<AICardToHand>().hurted += damageDealtBySpell;
+                    stopDealDamage = true;
+                }
+            }
+        }
     }
 }
