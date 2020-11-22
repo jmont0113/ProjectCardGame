@@ -30,6 +30,8 @@ public class PlayerDeck : MonoBehaviour
     public Text LoseText;
     public GameObject LoseTextGameObject;
 
+    public AudioSource shuffleSound;
+
     void Awake()
     {
         Shuffle();
@@ -104,6 +106,7 @@ public class PlayerDeck : MonoBehaviour
     {
         for(int i = 0; i <= 4; i++)
         {
+            shuffleSound.Play();
             yield return new WaitForSeconds(1);
             Instantiate(CardToHand, transform.position, transform.rotation);
         }
@@ -113,6 +116,7 @@ public class PlayerDeck : MonoBehaviour
     {
         for(int i = 0; i < deckSize; i++)
         {
+            shuffleSound.Play();
             container[0] = deck[i];
             int randomIndex = Random.Range(1, deckSize);
             deck[i] = deck[randomIndex];
@@ -126,6 +130,7 @@ public class PlayerDeck : MonoBehaviour
     {
         for(int i = 0; i < x; i++)
         {
+            shuffleSound.Play();
             yield return new WaitForSeconds(1);
             Instantiate(CardToHand, transform.position, transform.rotation);
         }

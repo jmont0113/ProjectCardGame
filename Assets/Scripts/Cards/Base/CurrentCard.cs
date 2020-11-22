@@ -82,6 +82,8 @@ public class CurrentCard : MonoBehaviour
 
     public bool stopDealDamage;
 
+    public AudioSource enemyHurtSound;
+
     void Start()
     {
         currentCard[0] = CardDataBase.cardList[currentID];
@@ -319,6 +321,7 @@ public class CurrentCard : MonoBehaviour
             {
                 if(Target == Enemy)
                 {
+                    enemyHurtSound.Play();
                     EnemyHP.staticHp -= power;
                     targeting = false;
                     canAttack = true;

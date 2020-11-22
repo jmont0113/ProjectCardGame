@@ -27,6 +27,8 @@ public class TurnSystem : MonoBehaviour
     public static int currentEnemyMana;
     public Text enemyManaText;
 
+    public AudioSource manaAudio;
+
     void Start()
     {
         StartGame();
@@ -86,6 +88,7 @@ public class TurnSystem : MonoBehaviour
 
     public void EndPlayerTurn()
     {
+        manaAudio.Play();
         isPlayerTurn = false;
         enemyTurn += 1;
 
@@ -99,6 +102,7 @@ public class TurnSystem : MonoBehaviour
 
     public void EndEnemyTurn()
     {
+        manaAudio.Play();
         isPlayerTurn = true;
         playerTurn += 1;
         maxMana += 1;

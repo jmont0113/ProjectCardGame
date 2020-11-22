@@ -22,6 +22,11 @@ public class Collection : MonoBehaviour
     void Start()
     {
         x = 1;
+
+        for(int i = 1; i <= 13; i++)
+        {
+            HowManyCards[i] = PlayerPrefs.GetInt("x" + i, 0);
+        }
     }
 
     void Update()
@@ -30,6 +35,11 @@ public class Collection : MonoBehaviour
         CardTwo.GetComponent<CardInCollection>().currentID = x + 1;
         CardThree.GetComponent<CardInCollection>().currentID = x + 2;
         CardFour.GetComponent<CardInCollection>().currentID = x + 3;
+
+        CardOneText.text = "x" + HowManyCards[x];
+        CardTwoText.text = "x" + HowManyCards[x + 1];
+        CardThreeText.text = "x" + HowManyCards[x + 2];
+        CardFourText.text = "x" + HowManyCards[x + 3];
 
         if (CardOneText.text == "x0")
         {
@@ -66,6 +76,11 @@ public class Collection : MonoBehaviour
         {
             CardFour.GetComponent<CardInCollection>().beGrey = false;
         }
+
+        for(int i = 1; i <= 13; i++)
+        {
+            PlayerPrefs.SetInt("x" + i, HowManyCards[i]);
+        }
     }
 
     public void Left()
@@ -76,5 +91,45 @@ public class Collection : MonoBehaviour
     public void Right()
     {
         x += 4;
+    }
+
+    public void Card1Minus()
+    {
+        HowManyCards[x]--;
+    }
+
+    public void Card1Plus()
+    {
+        HowManyCards[x]++;
+    }
+
+    public void Card2Minus()
+    {
+        HowManyCards[x + 1]--;
+    }
+
+    public void Card2Plus()
+    {
+        HowManyCards[x + 1]++;
+    }
+
+    public void Card3Minus()
+    {
+        HowManyCards[x + 2]--;
+    }
+
+    public void Card3Plus()
+    {
+        HowManyCards[x + 2]++;
+    }
+
+    public void Card4Minus()
+    {
+        HowManyCards[x + 3]--;
+    }
+
+    public void Card4Plus()
+    {
+        HowManyCards[x + 3]++;
     }
 }
