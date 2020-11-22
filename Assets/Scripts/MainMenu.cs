@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void ChangeScene()
+    public void StartGameScene()
     {
         SceneManager.LoadScene("CardGame");
     }
 
-    public void ExitGame()
+    public void CollectionScene()
+    {
+        SceneManager.LoadScene("Collection");
+    }
+
+    public void ExitGameScene()
     {
         Application.Quit();
     }
