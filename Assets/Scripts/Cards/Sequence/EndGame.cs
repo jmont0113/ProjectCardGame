@@ -9,7 +9,7 @@ public class EndGame : MonoBehaviour
     public GameObject textObject;
     public AudioSource victory;
     public AudioSource youLose;
-    
+
     void Start()
     {
         textObject.SetActive(false);
@@ -20,16 +20,26 @@ public class EndGame : MonoBehaviour
     {
         if(PlayerHP.staticHp <= 0)
         {
-            youLose.Play();
             textObject.SetActive(true);
             victoryText.text = "You Lose";
+            Victory();
         }
 
         if (EnemyHP.staticHp <= 0)
         {
-            victory.Play();
             textObject.SetActive(true);
             victoryText.text = "Victory";
+            YouLose();
         }
+    }
+
+    public void Victory()
+    {
+        victory.Play();
+    }
+
+    public void YouLose()
+    {
+        youLose.Play();
     }
 }

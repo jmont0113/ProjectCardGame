@@ -10,7 +10,6 @@ public class PlayerHP : MonoBehaviour
     public float hp;
     public Image Health;
     public Text hpText;
-    public AudioSource playerDeathAudio;
 
     void Start()
     {
@@ -31,7 +30,6 @@ public class PlayerHP : MonoBehaviour
 
         if(hp <= 0)
         {
-            playerDeathAudio.Play();
             hp = 0;
         }    
     }

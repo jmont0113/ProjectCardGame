@@ -10,7 +10,6 @@ public class EnemyHP : MonoBehaviour
     public float hp;
     public Image Health;
     public Text hpText;
-    public AudioSource enemyDeathAudio;
 
     void Start()
     {
@@ -30,7 +29,6 @@ public class EnemyHP : MonoBehaviour
         hpText.text = hp + " HP";
         if (hp <= 0)
         {
-            enemyDeathAudio.Play();
             hp = 0;
         }
     }
