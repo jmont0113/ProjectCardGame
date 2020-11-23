@@ -2654,7 +2654,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -750
+  m_Spacing: -1250
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -4379,7 +4379,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 808c01817b63c49449e6cdde6a4b84f9, type: 3}
-    m_FontSize: 40
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6193,7 +6193,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -750
+  m_Spacing: -1250
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -11482,7 +11482,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 808c01817b63c49449e6cdde6a4b84f9, type: 3}
-    m_FontSize: 40
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -11874,6 +11874,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1947073615}
     m_Modifications:
+    - target: {fileID: 5582366931742090512, guid: 74ca1236f1cccb747ae97d96b70920a7,
+        type: 3}
+      propertyPath: m_Spacing
+      value: -1250
+      objectReference: {fileID: 0}
     - target: {fileID: 5582366931742090516, guid: 74ca1236f1cccb747ae97d96b70920a7,
         type: 3}
       propertyPath: m_Name
@@ -12147,6 +12152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764220951654873436, guid: 1c70e89636032a6458ffe08a540af1bd,
+        type: 3}
+      propertyPath: m_Spacing
+      value: -1250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c70e89636032a6458ffe08a540af1bd, type: 3}
